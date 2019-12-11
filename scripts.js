@@ -8,18 +8,18 @@ const headers = {
     'SdkVersion': 'postman-graph/v1.0'
 }; 
 
-// const body = new URLSearchParams();
-// body.append('grent_type', 'password');
-// body.append('userName', 'guildafront@FELChagashotmail.onmicrosoft.com');
-// body.append('password', '94PgyhlUV7Te');
+const body = new URLSearchParams();
+body.append('grant_type', 'password');
+body.append('client_id', '682aac27-6b4b-4f13-a4f9-21f8b0f30f08');
+body.append('client_secret', '.C=T8S7[XpPu0qY-HTPcUgVObr4=bHUF');
+body.append('scope', 'https://graph.microsoft.com/.default');
+body.append('userName', 'guildafront@FELChagashotmail.onmicrosoft.com');
+body.append('password', '94PgyhlUV7Te');
 
-const data = {
-    userName : 'guildafront@FELChagashotmail.onmicrosoft.com',
-    password : '94PgyhlUV7Te'
-};
+
 
 const config = {
-    method: 'POST', mode: 'no-cors', body: JSON.stringify(data), headers
+    method: 'POST', body, headers
 };
 
-fetch(apiUrl, config).then(res => res.json()).catch(res => console.error('houve um erro', res.message)).then(objetoResposta => console.log(objetoResposta));
+fetch(apiUrl, config).then(res => res.json()).catch(res => console.error('Houve um erro: ', res.message)).then(objetoResposta => console.log(objetoResposta));

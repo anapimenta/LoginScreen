@@ -71,30 +71,42 @@ async function login(config){
 }
 
 
+
+//alguns codigos de erro retornados pelo ObjetoResposta condizem com um erro especíco, os quais sao tratados abaixo.
 function erroLogin(erros){
-  //alguns codigos de erro retornados pelo ObjetoResposta condizem com um erro especíco, os quais sao tratados abaixo.
+  //limpa os campos de input
+  document.getElementById('username').value = '';
+  document.getElementById('psw').value = '';
+
+  //pega o elemento que vai exibir o erro
+  let errorMessage = document.getElementById('errorMessage');
 
   erros.forEach(e => {
     if (e == 900023){
       console.log("email nao valido");
-
+      //Muda o conteudo com a mensagem de erro e torna visivel.
+      errorMessage.innerHTML = 'Email não é valido';
+      errorMessage.classList.remove("invisivel");
     }
     else if (e == 50034){
-
+      errorMessage.innerHTML='Usuario não existe';
+      errorMessage.classList.remove("invisivel");
       console.log("usuario não existe");
     }
     else if (e == 50126){
-
+      errorMessage.innerHTML='Usuario ou senha incorretos';
+      errorMessage.classList.remove("invisivel");
       console.log("usuario ou senha incorretos");
     }
     else{
 
+      errorMessage.innerHTML='Algo deu errado, tende de novo.';
+      errorMessage.classList.remove("invisivel");
       console.log("algun erro ocorreu");
     }
 
   });
 }
-
 
 
 

@@ -41,9 +41,16 @@ section{
   justify-items: center;
 }
 
- h1, span{
+ h1, p{
   align-self: center;
   text-align: center;
+}
+span{
+  align-self: start;
+  text-align: center;
+  color: #b80101;
+  font-weight: bold;
+
 }
 .left h1{
   font-size: 2rem;
@@ -77,10 +84,14 @@ button{
   font-size: 1.2rem;
   font-weight: 100;
 
-  
+
 }
 
 button:hover{
 
 background-color: #239da9;
+}
+
+.invisivel{
+  display: none;
 }

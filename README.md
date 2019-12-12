@@ -16,3 +16,13 @@ Para funcionar, basta selecionar o icone no canto superior direito do navegador 
 ![Extensao desativada](Imagens/desativado.jpg)
 ### Ativado
 ![Extensao ativada](Imagens/ativado.jpg)
+
+
+Caso contratrio, o erro retornado será o seguinte:
+
+'''
+Access to fetch at 'https://login.microsoftonline.com/be87ed09-e753-468f-8244-e2f3811ceacc/oauth2/v2.0/token' from origin 'null' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+'''
+
+# Conclusão: 
+Muito obrigada pela oportunidade, espero que gostem :)

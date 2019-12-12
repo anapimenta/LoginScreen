@@ -11,42 +11,50 @@ const headers = {
 };
 
 let loginBtn = document.getElementById('loginbtn');
-
-
-
-
 const body = new URLSearchParams();
-body.append('grant_type', 'password');
-body.append('client_id', client_id);
-body.append('client_secret', client_secret);
-body.append('scope', scope);
-body.append('userName', 'guildafront@FELChagashotmail.onmicrosoft.com');
-body.append('password', '94PgyhlUV7Te');
 
 
-const config = {
-  method: 'POST', body, headers
-};
+//Adiciona um evento de click ao botao de login
+loginBtn.addEventListener('click', function(){
+
+//pega os elementos username e password
+  let username = document.getElementById('username').value;
+  let password = document.getElementById('psw').value;
+
+//adiciona ao body
+  body.append('grant_type', 'password');
+  body.append('client_id', client_id);
+  body.append('client_secret', client_secret);
+  body.append('scope', scope);
+  body.append('userName', username);
+  body.append('password', password);
 
 
+  const config = {
+    method: 'POST', body, headers
+  };
 
-//chama a funcao de login
-login();
+  //executa o login
+  login(config);
+});
 
 
 
 //funcao que executa o login
-async function login(){
+async function login(config){
   const response = await fetch(apiUrl, config);
 
   const objetoResposta = await response.json()
 
   console.log(response.status);
-  console.log(objetoResposta.error_codes);
+  console.log(objetoResposta);
 
   //Caso o Status da resposta seja 200, o login ocorreu com exito, caso o contrário, a funcao erroLogin é chamada.
   if(response.status != 200){
     erroLogin(objetoResposta.error_codes)
+  }
+  else{
+    window.location.replace("home.html");
   }
 
 }
@@ -56,25 +64,25 @@ function erroLogin(erros){
   //alguns codigos de erro retornados pelo ObjetoResposta condizem com um erro especíco, os quais sao tratados abaixo.
 
   erros.forEach(e => {
-    if (e == 900023)
-    console.log("email nao valido");
-    else if (e == 50034)
-    console.log("usuario não existe");
-    else if (e == 50126)
-    console.log("usuario ou senha incorretos");
-    else
-    console.log("algun erro ocorreu");
+    if (e == 900023){
+      console.log("email nao valido");
+
+    }
+    else if (e == 50034){
+
+      console.log("usuario não existe");
+    }
+    else if (e == 50126){
+
+      console.log("usuario ou senha incorretos");
+    }
+    else{
+
+      console.log("algun erro ocorreu");
+    }
 
   });
 }
-
-loginBtn.addEventListener('click', function(){
-
-  let username = document.getElementById('username').value;
-  let password = document.getElementById('psw').value;
-
-  console.log(username, password)
-});
 
 
 

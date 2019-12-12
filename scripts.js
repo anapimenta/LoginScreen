@@ -10,34 +10,45 @@ const headers = {
   'SdkVersion': 'postman-graph/v1.0'
 };
 
-let loginBtn = document.getElementById('loginbtn');
 const body = new URLSearchParams();
 
+let loginbtn = document.getElementById('loginbtn');
+let logoutbtn = document.getElementById('logoutbtn');
 
-//Adiciona um evento de click ao botao de login
-loginBtn.addEventListener('click', function(){
+if (loginbtn) {
+  //Adiciona um evento de click ao botao de login
+  loginbtn.addEventListener('click', function(){
 
-//pega os elementos username e password
-  let username = document.getElementById('username').value;
-  let password = document.getElementById('psw').value;
+    //pega os elementos username e password
+    let username = document.getElementById('username').value;
+    let password = document.getElementById('psw').value;
 
-//adiciona ao body
-  body.append('grant_type', 'password');
-  body.append('client_id', client_id);
-  body.append('client_secret', client_secret);
-  body.append('scope', scope);
-  body.append('userName', username);
-  body.append('password', password);
+    //adiciona ao body
+    body.append('grant_type', 'password');
+    body.append('client_id', client_id);
+    body.append('client_secret', client_secret);
+    body.append('scope', scope);
+    body.append('userName', username);
+    body.append('password', password);
 
 
-  const config = {
-    method: 'POST', body, headers
-  };
+    const config = {
+      method: 'POST', body, headers
+    };
 
-  //executa o login
-  login(config);
-});
+    //executa o login
+    login(config);
+  });
+}
 
+if (logoutbtn) {
+  //Adiciona um evento de click ao botao de logout
+  logoutbtn.addEventListener('click', function(){
+
+    //redireciona para a pagina de login;
+    window.location.replace("index.html");
+  });
+}
 
 
 //funcao que executa o login

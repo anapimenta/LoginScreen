@@ -7,10 +7,10 @@ const scope = 'https://graph.microsoft.com/.default';
 
 const headers = {
   'Content-Type': 'application/x-www-form-urlencoded',
-  'SdkVersion': 'postman-graph/v1.0'
+  'SdkVersion': 'postman-graph/v1.0',
+  'Cache-Control': 'no-cache'
 };
 
-const body = new URLSearchParams();
 
 let loginbtn = document.getElementById('loginbtn');
 let logoutbtn = document.getElementById('logoutbtn');
@@ -23,6 +23,7 @@ if (loginbtn) {
     let username = document.getElementById('username').value;
     let password = document.getElementById('psw').value;
 
+    var body = new URLSearchParams();
     //adiciona ao body
     body.append('grant_type', 'password');
     body.append('client_id', client_id);
@@ -74,10 +75,7 @@ async function login(config){
 
 //alguns codigos de erro retornados pelo ObjetoResposta condizem com um erro especíco, os quais sao tratados abaixo.
 function erroLogin(erros){
-  //limpa os campos de input
-  document.getElementById('username').value = '';
-  document.getElementById('psw').value = '';
-
+  
   //pega o elemento que vai exibir o erro
   let errorMessage = document.getElementById('errorMessage');
 

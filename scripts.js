@@ -8,22 +8,26 @@ const headers = {
     'SdkVersion': 'postman-graph/v1.0'
 }; 
 
+//adiciona no body o conteudo pego do html 
 const body = new URLSearchParams();
 body.append('grant_type', 'password');
 body.append('client_id', client_id);
 body.append('client_secret', client_secret);
-
 body.append('scope', 'https://graph.microsoft.com/.default');
 body.append('userName', 'guildafront@FELChagashotmail.onmicrosoft.com');
 body.append('password', '94PgyhlUV7Te');
-
 
 
 const config = {
     method: 'POST', body, headers
 };
 
+
+
+
 login();
+
+
 
 //funcao que executa o login 
 async function login(){
@@ -32,11 +36,27 @@ async function login(){
     const objetoResposta = await response.json()
 
     console.log(response.status);
-    console.log(objetoResposta);
+    console.log(objetoResposta.error_codes[0]);
 
+    if(response.status != 200){
+         erroLogin(objetoResposta.error_codes)
+    }
+        
 }
 
-
+function erroLogin(erros){
+    erros.forEach(e => {
+        if (e == 900023)
+            console.log("email nao valido");
+        else if (e == 50034)
+            console.log("usuario não existe");
+        else if (e == 50126)
+            console.log("usuario ou senha incorretos");
+        else
+            console.log("algun erro ocorreu");
+        
+    });
+}
 
 
 

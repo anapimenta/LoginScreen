@@ -45,19 +45,42 @@ section{
   align-self: center;
   text-align: center;
 }
+.left h1{
+  font-size: 2rem;
+}
 
 .form{
   width: 80%;
   align-self: center;
 }
 
-input, button{
+input{
   margin-top: 2%;
   padding: 5%;
-  height: 40px;
-  border-radius: 15px;
+  height: 20%;
+  border-radius: 10px;
   width: 100%;
   border: none;
   font-size: 1.2rem;
   font-weight: 300;
+}
+button{
+  font-family: 'Poppins', Roboto, sans-serif;
+  border: 0.1em solid #FFFFFF;
+  background: none;
+  text-align: center;
+  margin-top: 2%;
+  height: 55px;
+  border-radius: 10px;
+  width: 100%;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 100;
+
+  
+}
+
+button:hover{
+
+background-color: #239da9;
 }

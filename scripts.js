@@ -6,11 +6,11 @@ const scope = 'https://graph.microsoft.com/.default';
 
 
 const headers = {
-    'Content-Type': 'application/x-www-form-urlencoded', 
-    'SdkVersion': 'postman-graph/v1.0'
-}; 
+  'Content-Type': 'application/x-www-form-urlencoded',
+  'SdkVersion': 'postman-graph/v1.0'
+};
 
-let loginBtn = document.getElementById('loginbtn'); 
+let loginBtn = document.getElementById('loginbtn');
 
 
 
@@ -25,56 +25,62 @@ body.append('password', '94PgyhlUV7Te');
 
 
 const config = {
-    method: 'POST', body, headers
+  method: 'POST', body, headers
 };
 
 
 
-//chama a funcao de login 
+//chama a funcao de login
 login();
 
 
 
-//funcao que executa o login 
+//funcao que executa o login
 async function login(){
-    const response = await fetch(apiUrl, config);
-    
-    const objetoResposta = await response.json()
+  const response = await fetch(apiUrl, config);
 
-    console.log(response.status);
-    console.log(objetoResposta.error_codes);
+  const objetoResposta = await response.json()
 
-    //Caso o Status da resposta seja 200, o login ocorreu com exito, caso o contrário, a funcao erroLogin é chamada.
-    if(response.status != 200){
-         erroLogin(objetoResposta.error_codes)
-    }
- 
+  console.log(response.status);
+  console.log(objetoResposta.error_codes);
+
+  //Caso o Status da resposta seja 200, o login ocorreu com exito, caso o contrário, a funcao erroLogin é chamada.
+  if(response.status != 200){
+    erroLogin(objetoResposta.error_codes)
+  }
+
 }
 
 
 function erroLogin(erros){
-    //alguns codigos de erro retornados pelo ObjetoResposta condizem com um erro especíco, os quais sao tratados abaixo. 
+  //alguns codigos de erro retornados pelo ObjetoResposta condizem com um erro especíco, os quais sao tratados abaixo.
 
-    erros.forEach(e => {
-        if (e == 900023)
-            console.log("email nao valido");
-        else if (e == 50034)
-            console.log("usuario não existe");
-        else if (e == 50126)
-            console.log("usuario ou senha incorretos");
-        else
-            console.log("algun erro ocorreu");
-        
-    });
+  erros.forEach(e => {
+    if (e == 900023)
+    console.log("email nao valido");
+    else if (e == 50034)
+    console.log("usuario não existe");
+    else if (e == 50126)
+    console.log("usuario ou senha incorretos");
+    else
+    console.log("algun erro ocorreu");
+
+  });
 }
 
 loginBtn.addEventListener('click', function(){
 
-    let username = document.getElementById('username').value;
-    let password = document.getElementById('psw').value;
+  let username = document.getElementById('username').value;
+  let password = document.getElementById('psw').value;
 
-    console.log(username, password)
+  console.log(username, password)
 });
+
+
+
+
+
+
 
 
 // fetch(apiUrl, config)
@@ -84,6 +90,6 @@ loginBtn.addEventListener('click', function(){
 
 
 
-//900023 email invalido 
-//50034 usuario nao existe 
-//50126 invalid username or password 
+//900023 email invalido
+//50034 usuario nao existe
+//50126 invalid username or password

@@ -75,7 +75,7 @@ async function login(config){
 
 //alguns codigos de erro retornados pelo ObjetoResposta condizem com um erro especíco, os quais sao tratados abaixo.
 function erroLogin(erros){
-  
+
   //pega o elemento que vai exibir o erro
   let errorMessage = document.getElementById('errorMessage');
 
@@ -106,16 +106,6 @@ function erroLogin(erros){
   });
 }
 
-
-
-
-
-
-
-// fetch(apiUrl, config)
-// .then(res => res.json())
-// .catch(res => console.error('Houve um erro: ', res.message))
-// .then(objetoResposta => console.log(objetoResposta));
 
 
 

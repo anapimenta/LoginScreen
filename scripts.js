@@ -2,18 +2,24 @@
 const apiUrl = 'https://login.microsoftonline.com/be87ed09-e753-468f-8244-e2f3811ceacc/oauth2/v2.0/token';
 const client_id = '682aac27-6b4b-4f13-a4f9-21f8b0f30f08';
 const client_secret = '.C=T8S7[XpPu0qY-HTPcUgVObr4=bHUF';
+const scope = 'https://graph.microsoft.com/.default';
+
 
 const headers = {
     'Content-Type': 'application/x-www-form-urlencoded', 
     'SdkVersion': 'postman-graph/v1.0'
 }; 
 
-//adiciona no body o conteudo pego do html 
+let loginBtn = document.getElementById('loginbtn'); 
+
+
+
+
 const body = new URLSearchParams();
 body.append('grant_type', 'password');
 body.append('client_id', client_id);
 body.append('client_secret', client_secret);
-body.append('scope', 'https://graph.microsoft.com/.default');
+body.append('scope', scope);
 body.append('userName', 'guildafront@FELChagashotmail.onmicrosoft.com');
 body.append('password', '94PgyhlUV7Te');
 
@@ -24,7 +30,7 @@ const config = {
 
 
 
-
+//chama a funcao de login 
 login();
 
 
@@ -36,15 +42,19 @@ async function login(){
     const objetoResposta = await response.json()
 
     console.log(response.status);
-    console.log(objetoResposta.error_codes[0]);
+    console.log(objetoResposta.error_codes);
 
+    //Caso o Status da resposta seja 200, o login ocorreu com exito, caso o contrário, a funcao erroLogin é chamada.
     if(response.status != 200){
          erroLogin(objetoResposta.error_codes)
     }
-        
+ 
 }
 
+
 function erroLogin(erros){
+    //alguns codigos de erro retornados pelo ObjetoResposta condizem com um erro especíco, os quais sao tratados abaixo. 
+
     erros.forEach(e => {
         if (e == 900023)
             console.log("email nao valido");
@@ -58,6 +68,13 @@ function erroLogin(erros){
     });
 }
 
+loginBtn.addEventListener('click', function(){
+
+    let username = document.getElementById('username').value;
+    let password = document.getElementById('psw').value;
+
+    console.log(username, password)
+});
 
 
 // fetch(apiUrl, config)
